@@ -1,0 +1,29 @@
+.body{
+    background-color: antiquewhite;
+    margin-top: 5%;
+    padding: 10px 100px;
+}
+.info-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.user-info{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.info{
+    padding: 10px 0px;
+    border-bottom: 1px solid gray;
+    border-top: 1px solid gray;
+    display: flex;
+    align-items: center;
+    gap: 100px;
+}
+.info *{
+    margin: 0;
+}
+.invoice-btn{
+    align-self: center;
+}

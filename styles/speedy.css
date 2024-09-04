@@ -1,0 +1,16 @@
+.speedy-logo{
+    background-color: transparent;
+    width: 80px;
+}
+main{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.scanner{
+    cursor: pointer;
+}
+.reader{
+    display: none;
+}

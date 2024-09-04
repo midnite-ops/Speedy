@@ -1,0 +1,61 @@
+body{
+    padding-bottom: 1000px;
+}
+.box{
+    width: 50%;
+    margin: 0 auto;
+    padding: 20px 50px;
+    border-radius: 10px;
+    border: 1px solid grey;
+}
+.user{
+    text-align: right;
+    font-size: 16px;
+}
+.user-info{
+    display: flex;
+    gap: 40px;
+    flex-direction: column;
+}
+.img{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid grey;
+    padding-bottom: 30px;
+}
+.qr-img{
+    cursor: pointer;
+}
+.qr{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+.qr-veil{
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 25px;
+    height: 100%;
+}
+.qr-veil *{
+    margin: 0;
+}
+.remita-logo{
+    width: 100px;
+}
+.funai-logo{
+    width: 300px;
+}
+.user-details{
+    display: flex;
+    height: 300px;
+    justify-content: space-between;
+    align-items: start;
+}
+.table-details{
+    padding: 50px;
+}

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles/index.css">
+    <title>Speedy.com</title>
+</head>
+<body>
+    <section class="container body">
+        <div class="info-container">
+            <h1 class="header-h1">Other Charges</h1>
+            <div class="user-info-js">
+                <div class="info">
+                    <p>Fullname:</p>
+                    <input type="text" placeholder="Fullname" class="username-js" required>
+                </div>
+                <div class="info">
+                    <p>Session:</p>
+                    <select class="form-select session-js" aria-label="Default select example" required>
+                        <option selected>Select Session</option>
+                        <option value="2024-2025">2024-2025</option>
+                        <option value="2023-2024">2023-2024</option>
+                        <option value="2022-2023">2022-2023</option>
+                      </select>
+                </div>
+                <div class="info">
+                    <p>Student Type:</p>
+                    <p class="student-type-js">REGULAR</p>
+                </div>
+                <div class="info">
+                    <p>FeeType:</p>
+                    <select class="form-select fee-js" aria-label="Default select example" required>
+                        <option selected>Select Fee Type</option>
+                        <option value="FULL PAYMENT">FULL PAYMENT</option>
+                        <option value="FIRST INSTALLMENT">FIRST INSTALLMENT</option>
+                        <option value="SECOND INSTALLMENT">SECOND INSTALLMENT</option>
+                      </select>
+                </div>
+                <div class="info">
+                    <p>Level:</p>
+                    <select class="form-select level-js" aria-label="Default select example" required>
+                        <option selected>Select The Level</option>
+                        <option value="100 LEVEL">100 LEVEL</option>
+                        <option value="200 LEVEL">200 LEVEL</option>
+                        <option value="300 LEVEL">300 LEVEL</option>
+                        <option value="400 LEVEL">400 LEVEL</option>
+                        <option value="500 LEVEL">500 LEVEL</option>
+                      </select>
+                </div>
+                <div class="info">
+                    <p>Matric No:</p>
+                    <p class="number-js">2020/SC/16710</p>
+                </div>
+            </div>
+            <button  class="invoice-btn">
+                <a href="invoice-qr-code.html" target="_blank">
+                    Generate invoice
+                </a>
+            </button>
+        </div>
+    </section>
+
+    <script src="scripts/qr-code.js"></script>
+</body>
+</html>
