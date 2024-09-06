@@ -19,6 +19,14 @@ function studentDetails(){
     )
     return studentInfo;
 }
+document.querySelector('.invoice-btn-js').addEventListener('click', () => {
+    if(name.value === '' || session.value === 'Select Session' || fee.value === 'Select Fee Type' || level.value === 'Select The Level'){
+        console.log('fish')
+        alert('Please input the necessary information')
+    }else{
+        window.open("invoice-qr-code.html", '_blank');
+    }
+})
 document.querySelector('.invoice-btn').addEventListener('click', () => {
     const data = studentDetails();
     console.log(data)

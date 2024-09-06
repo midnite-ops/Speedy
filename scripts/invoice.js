@@ -1,6 +1,6 @@
-// window.onload = function(){
-//     window.print();
-// }
+window.onload = function(){
+    window.print();
+}
 
 //This line of code gets the users details from the form from the previous page
 const oldData = JSON.parse(localStorage.getItem('student'));
@@ -33,6 +33,8 @@ width: 150,
 height: 150,
 correctLevel: QRCode.CorrectLevel.H
 })
+
+
 document.querySelector('.user-js').innerHTML = studentHTML;
 
 function loop(value){

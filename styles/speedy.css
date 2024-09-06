@@ -1,16 +1,24 @@
-.speedy-logo{
-    background-color: transparent;
-    width: 80px;
-}
 main{
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
 }
+.speddy{
+    font-family: cursive;
+    font-size: 30px;
+}
 .scanner{
     cursor: pointer;
 }
 .reader{
     display: none;
+}
+@media (max-width: 576px){
+    .scanner{
+        width: 50%;
+    }
+    .box{
+        text-align: center;
+    }
 }
