@@ -19,13 +19,13 @@ const html = `
 `
 //This line of code renders whatever details that was inputed in the previous page to its appropriate section
 let studentHTML = `
-    <p class="user-name-js">Oyims Jesse</p>
-    <p>2020/SC/16710</p>
-    <p>400Level</p>
+    <p class="user-name-js">${oldStudentData.name}</p>
+    <p>${oldStudentData.regnumber}</p>
+    <p>${oldStudentData.level}</p>
     <p>
     MATHEMATICS/COMPUTER SCIENCE/STATISTICS/INFORMATICS
     </p>
-    <p>Regular</p`
+    <p>${oldStudentData.type}</p`
 
 const qr = new QRCode(document.querySelector('.qr-img-js'),{
 text: html,
