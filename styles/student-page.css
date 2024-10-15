@@ -1,0 +1,24 @@
+body{
+    font-family: monospace;
+}
+main{
+    margin-top: 5%;
+}
+.speedy{
+    font-size: 30px;
+    font-family: cursive;
+}
+.payment-body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.payment-img-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.payment-img{
+    cursor: pointer;
+}
