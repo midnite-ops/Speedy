@@ -10,7 +10,7 @@ function startQrScanner() {
 
     const qrCodeErrorCallback = (errorMessage) => {
         // Handle any errors here
-        console.log(`QR Code scan error: ${errorMessage}`);
+        console.log(`QR Code scan errorimg: ${errorMessage}`);
     };
 
     const config = { fps: 10, qrbox: { width: 250, height: 250 } };

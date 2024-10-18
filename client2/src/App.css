@@ -40,3 +40,47 @@
 .read-the-docs {
   color: #888;
 }
+.info-container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 30px;
+}
+.user-info{
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.info{
+  padding: 10px 0px;
+  border-bottom: 1px solid gray;
+  border-top: 1px solid gray;
+  display: flex;
+  align-items: center;
+  gap: 100px;
+}
+.info *{
+  margin: 0;
+}
+.invoice-btn{
+  align-self: center;
+  padding: 10px 20px;
+  background-color: transparent;
+  border: 1px solid black;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+.invoice-btn a{
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+@media (max-width: 576px){
+  .body{
+      margin-top: 10%;
+      padding: 0px 50px;
+  }
+  .info{
+      gap: 20px;
+  }
+}

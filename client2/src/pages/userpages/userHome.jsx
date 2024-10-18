@@ -1,4 +1,5 @@
 import React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -6,6 +7,9 @@ import img1 from '../../assets/images/payment-icon.webp'
 
 
 function UserHome() {
+//      variables
+let params = useParams()
+let navigate = useNavigate()
     
     return(
         <div id="userHomeMainCont">
@@ -39,14 +43,23 @@ function UserHome() {
             </nav>
 
             <main>
+
             <div className="payment-body">
+
                 <div className="payment-img-div">
-                <a href="index.html"  className="payment-img js-payment-img">
+                <div style={{cursor: 'pointer'}} href="index.html"  className="payment-img js-payment-img" onClick={
+                    () =>{
+                        navigate(`/gencharges/${params.id}`)
+                    }
+                }>
                     <img src={img1} alt="a payment-icon" />
-                </a>
+                </div>
+
                 <h1>Make a payment</h1>
                 </div>
+
             </div>
+
             </main>
         </div>
     )

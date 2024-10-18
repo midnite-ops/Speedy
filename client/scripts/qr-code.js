@@ -24,7 +24,6 @@ document.querySelector('.invoice-btn-js').addEventListener('click', () => {
         console.log('fish')
         alert('Please input the necessary information')
     }else{
-        window.open("invoice-qr-code.html", '_blank');
     }
 })
 document.querySelector('.invoice-btn').addEventListener('click', () => {
