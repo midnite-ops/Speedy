@@ -9,6 +9,7 @@ import UserHome from './pages/userpages/userHome'
 import GenCharges from './pages/userpages/genCharges'
 import QrCodeScn from './components/qrcodeScn'
 import Invoice from './components/invoice'
+import Checkout from './pages/userpages/checkout'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +18,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='/checkout' element={ < Checkout />}></Route>
           <Route path='/gencharges/:id?' element={ < GenCharges />}></Route>
           <Route path='/invoice/:id?' element={ < Invoice />}></Route>
           <Route path='/scan' element={ < QrCodeScn />}></Route>

@@ -12,6 +12,7 @@ let [pageData, setPageData] = useState({
     name: '',
     session: '',
     feeType: '',
+    rrr: '',
     level: '',
     matNo: ''
 })
@@ -42,7 +43,14 @@ function handleSubmit(e){
 
     if(pageData.name && pageData.session && pageData.session && pageData.level){
 
+        let randomNumber = Math.floor(Math.random()*1000000)
+        let num = `01021${randomNumber}`
+        let rrr = num.substring(0, 10)
+
+        pageData.rrr = rrr
+
         navigate('/invoice', {state: pageData})
+        
 
     } else {
         console.log('complete form')

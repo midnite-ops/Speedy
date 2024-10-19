@@ -54,7 +54,7 @@ function handleStartScanClick(){
             </button>
     
             {/* This div is where the QR code scanner will render */}
-            {isScanning && <div id="reader" ref={readerRef} style={{ width: "300px", height: "300px" }}></div>}
+            {isScanning && <div className="reader" ref={readerRef} style={{ width: "300px", height: "300px" }}></div>}
       </div>
     )
 }

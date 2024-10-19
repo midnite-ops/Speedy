@@ -7,6 +7,7 @@ const app = express()
 
 //controllers
 let userCont = require('./controllers/userCont')
+let invoideCont = require('./controllers/invoiceCont')
 
 //      app.use
 app.use(express.json())
@@ -28,6 +29,7 @@ app.get('/se', (req, res) =>{
 //      Post Request
 app.post('/createuser', userCont.createUserPost)
 app.post('/login/', userCont.loginUser)
+app.post('/createinvoice', invoideCont.createInvoice)
 
 
 app.listen(3033, () =>{
