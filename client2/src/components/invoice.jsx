@@ -1,24 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 
-import { QRCodeCanvas, QRCodeSVG } from 'qrcode.react'  
-
+import { QRCodeCanvas, QRCodeSVG} from 'qrcode.react'  
 import 'bootstrap/dist/css/bootstrap.min.css'
+
 
 import remita from '../assets/images/remita.jpg'
 import funaiLogo from '../assets/images/cropped-ccd-logo.png'
-import { Query } from 'mongoose'
 
 const Invoice = (props) => {
 
 //      Variable
     const location = useLocation()
+    let navigate = useNavigate()
+    let params = useParams()
+
 
     let [pageData, setPageData] = useState(location.state)
+
     
     console.log(pageData)
 
+    let[genQrCode, setGenQrcode] = useState(
+        QRCodeCanvas
+    )
     
+//      Function
+
+//      Generate QRCODEFUNCTION
+let generateQrcode = () => {
+    return `user: ${params.id}\n payerName: ${pageData.name}\n rrr: ${pageData.rrr}\n amount: ${pageData.amount}`
+}
+
 
   return (
     <div id='invoiceMainCont'>
@@ -30,7 +43,7 @@ const Invoice = (props) => {
                 </div>
                 <div className="user-details user-details-js">
                     <div className="qr">
-                        <div className="qr-img-js qr-img">< QRCodeCanvas value='this is the last' /></div>
+                        <div className="qr-img-js qr-img">< QRCodeCanvas value={generateQrcode()} /></div>
                         <div className="qr-veil-js qr-veil"></div>
                     </div>
                     <div className="user-js user"></div>
@@ -60,7 +73,11 @@ const Invoice = (props) => {
                         </tbody>
                     </table>
                     <small className="d-block fw-bold">Kindly ensure your payment is made with an RRR generated from the portal</small>
-                    <a href="checkout.html">Click here to pay with card or bank transfer</a>
+                    <div style={{color: 'blue', cursor: 'pointer'}} href="checkout.html" onClick={
+                        () =>{
+                            navigate('/checkout', {state: 's' /*pageData.invData */})
+                        }
+                    }>Click here to pay with card or bank transfer</div>
                 </div>
             </div>
         </section>

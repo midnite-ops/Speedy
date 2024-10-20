@@ -34,6 +34,7 @@ async function handleSubmit(e){
                     navigate(`/userhome/${data.id}`)
                 }
                })
+               .catch(error => console.error(error))
 }
 
 //      handleCHange Function

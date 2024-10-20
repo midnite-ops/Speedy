@@ -10,6 +10,7 @@ import GenCharges from './pages/userpages/genCharges'
 import QrCodeScn from './components/qrcodeScn'
 import Invoice from './components/invoice'
 import Checkout from './pages/userpages/checkout'
+import AtmCardInput from './pages/userpages/atmPay'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -18,6 +19,7 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path='/atmcard/:id?' element={ < AtmCardInput/>}></Route>
           <Route path='/checkout' element={ < Checkout />}></Route>
           <Route path='/gencharges/:id?' element={ < GenCharges />}></Route>
           <Route path='/invoice/:id?' element={ < Invoice />}></Route>

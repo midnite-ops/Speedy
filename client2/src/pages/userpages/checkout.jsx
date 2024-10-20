@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import { useLocation } from 'react-router-dom'
+
 
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -6,6 +8,12 @@ const Checkout = () => {
 
 //      Variables
 const [loaded, setLoaded] = useState(false)
+let location = useLocation()
+
+console.log(location.state)
+
+let recData = location.state
+
 
 //      Function
 
@@ -19,52 +27,53 @@ function handlePayBtn() {
     <div id='checkoutMainCont'>
 
         { loaded ?
-            <main>
-                <div className="box">
+                <div className="box" >
 
-                    <form>
+                    <form style={{display: 'flex', flexDirection: 'column', gap: "10px"}}>
                         <div className="speedy">
                             Speedy
                         </div>
 
                         <h1 className="h3 mb-3 fw-normal">Payment details</h1>
-                        <div className="form-floating mt-3">
-                            <input type="text" className="form-control" id="floatingText" placeholder="Password" disabled />
-                            <label htmlFor="floatingPassword" className="name-js">Name</label>
-                            </div>
 
-                            <div className="form-floating mt-3 mb-3">
-                            <input type="phone" className="form-control" id="floatingInput" placeholder="Password" required />
-                            <label htmlFor="floatingPassword">remita </label>
-                            </div>
-
-                        <div className="form-floating">
-                            <input type="email" className="form-control" id="floatingInput1" placeholder="name@example.com" required />
-                            <label htmlFor="floatingInput">Email address</label>
+                        <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
+                                <div  id="floatingText">Name:</div>
+                                <div  id="floatingText"> {recData.payerName ? recData.payerName : 'John Doe'}</div>
                         </div>
 
-                        <div className="form-floating mt-3">
-                            <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required />
-                            <label htmlFor="floatingPassword">Phone number</label>
+                        <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
+                                <div  id="floatingText">RRR:</div>
+                                <div  id="floatingText"> {recData.rrr ? recData.rrr : '0912839422'}</div>
                         </div>
+
+                        <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
+                                <div  id="floatingText">Fee:</div>
+                                <div  id="floatingText"> {recData.fee ? recData.fee : 'School fees'}</div>
+                        </div>
+
+                        <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
+                                <div  id="floatingText">Amount:</div>
+                                <div  id="floatingText"> {recData.amount ? recData.amount : '#20,000'}</div>
+                        </div>
+
+          
                         
-                        <button className="btn btn-primary w-100 mt-5 py-2" type="submit">
+                        <button style={{marginTop: '20px'}} type="submit">
                             Pay Now
                         </button>
                     </form>
 
                 </div>
-            </main>
             :
             <div>
                    <div className="form-floating">
-                            <input type="email" className="form-control" id="floatingInput1" placeholder="name@example.com" required />
+                            <input type="email" className="form-control" id="floatingInput1" defaultValue={recData.rrr ? recData.rrr : ''} placeholder="name@example.com" required />
                             <label htmlFor="floatingInput">Remita RRR</label>
                         </div>
                         <button className="btn btn-primary w-100 mt-5 py-2" type="submit" onClick={
                             handlePayBtn
                         }>
-                            Pay Now
+                            Continue
                         </button>
 
             </div>

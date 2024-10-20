@@ -13,9 +13,13 @@ let [pageData, setPageData] = useState({
     session: '',
     feeType: '',
     rrr: '',
+    amount: '',
     level: '',
-    matNo: ''
+    matNo: '',
+    invData: {}, 
 })
+
+
 
 let navigate = useNavigate()
 const params = useParams()
@@ -23,9 +27,28 @@ const params = useParams()
 let [payInvoice, setPayInvoice] = useState(false)
 
 //      Functions
+
 //      handle Change
 function handleChange(e) {
     let {value, id} = e.target
+
+    if(value == "FULL PAYMENT"){
+        setPageData(prev => {
+            return {
+                ...prev,
+                amount: '#70,000'
+            }
+        })
+    }
+    else if(value == "FIRST INSTALLMENT" || "SECOND INSTALLMENT"){
+        setPageData(prev => {
+            return {
+                ...prev,
+                amount: '#35,000'
+            }
+        })
+    }
+
 
     setPageData(prev =>{
         return {
@@ -34,6 +57,37 @@ function handleChange(e) {
         }
     })
 }
+//      Submit Invoice 
+async function submitInvoice(){
+
+    let sendData = {
+        rrr: pageData.rrr,
+        fee: pageData.feeType,
+        amount: pageData.amount,
+        id: params.id,
+        name: pageData.name
+    }
+   
+    let fetchApi = await fetch(`http://localhost:3033/createinvoice`, {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json"
+        },
+        body: JSON.stringify(sendData)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+        if(data.message == 'success'){
+            pageData.invData = data.data
+
+            navigate(`/invoice/${params.id}`, {state : pageData})
+        }
+    })
+    .catch(error => console.log(error))
+}
+
+
 
 //      handleSubmit
 function handleSubmit(e){
@@ -43,13 +97,15 @@ function handleSubmit(e){
 
     if(pageData.name && pageData.session && pageData.session && pageData.level){
 
+
         let randomNumber = Math.floor(Math.random()*1000000)
         let num = `01021${randomNumber}`
         let rrr = num.substring(0, 10)
 
         pageData.rrr = rrr
+        submitInvoice()
 
-        navigate('/invoice', {state: pageData})
+        //navigate('/invoice', {state: pageData})
         
 
     } else {

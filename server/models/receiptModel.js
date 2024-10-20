@@ -23,11 +23,11 @@ let newSchema = schema({
     payerId: {
         type: 'string'
     },
-    invoiceQrcode: {
-        type: 'string'
+    receiptQrcode: {
+        type: String
     }
 })
 
-let invoiceModel = mongoose.model('invoice', newSchema)
+let invoiceModel = mongoose.model('receipt', newSchema)
 
 module.exports = invoiceModel
