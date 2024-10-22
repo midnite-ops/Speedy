@@ -16,7 +16,8 @@ exports.createReceipt = asyncHandler(
                     payerName,
                     payerId,
                     fee,
-                    amount
+                    amount,
+                    receiptQrcode: qrcode
                 })
 
                 await newReciept.save()
@@ -46,3 +47,26 @@ exports.createReceipt = asyncHandler(
         }
     }
 ) 
+
+
+exports.getreceipt = asyncHandler(
+    async(req, res) =>{
+
+        let qrcode = req.params.qrcode
+        console.log(qrcode)
+
+        let receipt = await receiptModel.findOne({receiptQrcode: qrcode})
+        try {
+            if(receipt){
+                return res.status(200).json({message: 'success', action: 'receipt found', data: receipt})
+            }
+
+            if(!receipt){
+                return res.status(400).json({message: 'failure', action: 'receipt not found'})
+            }
+
+        } catch (error) {
+            return res.status(400).json({message: 'failure', action: 'error', error: error.message})
+        }
+    }
+)

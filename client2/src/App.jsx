@@ -13,6 +13,7 @@ import Checkout from './pages/userpages/checkout'
 import AtmCardInput from './pages/userpages/atmPay'
 import QrScanner from './components/qrcodeScn'
 import Admin from './components/admin'
+import ReceiptPage from './components/receipt'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path='/atmcard/:id?' element={ < AtmCardInput/>}></Route>
           <Route path='/admin' element={ < Admin />}></Route>
+          <Route path='/receipt' element={ < ReceiptPage />}></Route>
           <Route path='/scan' element={ < QrScanner />}></Route>
           <Route path='/checkout/:id?' element={ < Checkout />}></Route>
           <Route path='/gencharges/:id?' element={ < GenCharges />}></Route>

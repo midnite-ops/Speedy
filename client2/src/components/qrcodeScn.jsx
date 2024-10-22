@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import QrReader from 'react-qr-scanner';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const QRScanner = () => {
   const [qrData, setQrData] = useState(null);
+  let location = useLocation()
+  let navigate = useNavigate()
 
   const handleScan = (data) => {
     if (data) {
       setQrData(data.text);
       console.log("QR Code Data: ", data.text);
-      // You can process the scanned data further here
+    
+      let qrcode = data.text
+      
+      let fetchApi = fetch(`http://localhost:3033/getreceipt/${qrcode}`)
+      .then(resp => resp.json())
+      .then(data => {
+        console.log(data)
+        if(data.message == success){
+            console.log('hsjxj')
+            navigate('/receipt', {state: data})
+        }
+      })
     }
   };
 

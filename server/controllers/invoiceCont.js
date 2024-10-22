@@ -39,3 +39,22 @@ exports.createInvoice = asyncHandler(
     }
 )
  
+exports.getInvoice = asyncHandler(
+    
+    async(req,res) =>{
+        let rrr = req.params.rrr
+
+        console.log(rrr)
+
+        let invoice = await invoiceModel.findOne({rrr: rrr})
+
+        try {
+            if(invoice){
+                return res.status(200).json({message: 'success', action: 'invoice found', data: invoice})
+            }
+            
+        } catch (error) {
+            return res.status(400).json({message: 'failure', action: 'error', data: error.message})
+        }
+    }
+)

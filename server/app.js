@@ -39,6 +39,10 @@ app.post('/createreceipt', receiptCont.createReceipt)
 app.post('/getatm', atmCont.getAtm)
 
 
+//      Get request
+app.get('/getinvoice/:rrr', invoideCont.getInvoice )
+app.get('/getreceipt/:qrcode', receiptCont.getreceipt )
+
 app.listen(3033, () =>{
     console.log('Server started on port 3033')
 })

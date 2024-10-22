@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 
 import { QRCodeSVG } from 'qrcode.react';
 
@@ -23,7 +24,7 @@ const AtmCardInput = () => {
 
 console.log(pageData)
 
-
+let navigate = useNavigate()
 let location = useLocation()
 
 let rData = location.state
@@ -84,7 +85,11 @@ async function confirmPayment(){
       body: JSON.stringify(sData)
     })
     .then(resp => resp.json())
-    .then(data => console.log(data))
+    .then(data => {
+      if(data.message == 'success'){
+        navigate('/receipt', {state: data})
+      }
+    })
 
   }
 
@@ -110,7 +115,6 @@ async function confirmPayment(){
       }
     })
 
-    alert('Card Submitted Successfully');
   };
 
 
