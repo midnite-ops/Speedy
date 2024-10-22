@@ -1,5 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
+
+import { QRCodeSVG } from 'qrcode.react';
 
 
 
@@ -10,6 +12,7 @@ const AtmCardInput = () => {
   const [cvv, setCvv] = useState('');
 
 //    Variables  
+  let [payRRR, setPayRRR] = useState(null)
 
   let pageData = {
     cardNum: cardNumber,
@@ -23,11 +26,67 @@ console.log(pageData)
 
 let location = useLocation()
 
-console.log(location)
+let rData = location.state
+console.log(rData)
 
 //    Functions
+
+function genQrCode(){
+  return `rrr: ${rData.rrr.substring(5,10)}12132, name: ${rData.name}, fee: ${rData.feeType}, amount: ${rData.amount}, paid: True`
+}
+
+
+//    GenerateRRR Function
+function generatePayRRR() {
+  let randNumber = Math.floor(Math.random()*1000000000)
+
+  let num = `87934${randNumber}`
+
+  let payRRR = num.substring(0, 10)
+  setPayRRR(payRRR)
+}
+
+useEffect(() =>{
+  generatePayRRR()
+  console.log(genQrCode())
+}, [])
+
+
+console.log(payRRR)
+
 //    confirm Payment function
 async function confirmPayment(){
+
+  let data;
+  
+  let fetchApi = await fetch(`http://localhost:3033/getinvoice/${rData.rrr}`)
+
+  let resp = await fetchApi.json()
+
+  if(resp.message == 'success'){
+    data = resp.data
+    
+    let sData = {
+      rrr: rData.rrr.substring(5,10)+12132,
+      payerName: data. payerName,
+      payerId: data.payerId,
+      fee: data.fee,
+      amount: data.amount,
+      qrcode: genQrCode(),
+    }
+
+    let createReceipt = await fetch(`http://localhost:3033/createreceipt`, {
+      method: 'POST',
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      },
+      body: JSON.stringify(sData)
+    })
+    .then(resp => resp.json())
+    .then(data => console.log(data))
+
+  }
 
 }
 
@@ -47,12 +106,13 @@ async function confirmPayment(){
     .then(resp => resp.json())
     .then(data => {
       if(data.message == 'success'){
-        // receipt invoice here
+        confirmPayment()
       }
     })
 
     alert('Card Submitted Successfully');
   };
+
 
 
   return (
