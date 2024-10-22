@@ -20,7 +20,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/atmcard/:id?' element={ < AtmCardInput/>}></Route>
-          <Route path='/checkout' element={ < Checkout />}></Route>
+          <Route path='/checkout/:id?' element={ < Checkout />}></Route>
           <Route path='/gencharges/:id?' element={ < GenCharges />}></Route>
           <Route path='/invoice/:id?' element={ < Invoice />}></Route>
           <Route path='/scan' element={ < QrCodeScn />}></Route>

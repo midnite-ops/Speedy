@@ -21,11 +21,21 @@ let newSchema = schema({
         required: true
     },
     payerId: {
-        type: 'string'
+        type: String
     },
-    invoiceQrcode: {
-        type: 'string'
+    qrcode: {
+        type: String,
+        require: 'true'
+    },
+    session: {
+        type: String,
+        require: 'true'
+    },
+    level: {
+        type: String,
+        require: 'true'
     }
+
 })
 
 let invoiceModel = mongoose.model('invoice', newSchema)

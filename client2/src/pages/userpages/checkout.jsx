@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 
 import 'bootstrap/dist/css/bootstrap.min.css'
@@ -8,6 +8,8 @@ const Checkout = () => {
 
 //      Variables
 const [loaded, setLoaded] = useState(false)
+
+let navigate = useNavigate()
 let location = useLocation()
 
 console.log(location.state)
@@ -18,7 +20,7 @@ let recData = location.state
 //      Function
 
 //      handlePayBtn Function
-function handlePayBtn() {
+function handleContBtn() {
     setLoaded(true)
 }
 
@@ -38,7 +40,7 @@ function handlePayBtn() {
 
                         <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
                                 <div  id="floatingText">Name:</div>
-                                <div  id="floatingText"> {recData.payerName ? recData.payerName : 'John Doe'}</div>
+                                <div  id="floatingText"> {recData.name ? recData.name : 'John Doe'}</div>
                         </div>
 
                         <div style={{width: '300px', display: 'flex', alignItems: 'center' ,justifyContent: 'space-between'}} className="form-control" id="floatingText">
@@ -58,7 +60,10 @@ function handlePayBtn() {
 
           
                         
-                        <button style={{marginTop: '20px'}} type="submit">
+                        <button style={{marginTop: '20px'}} type="submit" onClick={(e) =>{
+                            e.preventDefault();
+                            navigate('/atmcard', {state: recData})
+                        }}>
                             Pay Now
                         </button>
                     </form>
@@ -71,7 +76,7 @@ function handlePayBtn() {
                             <label htmlFor="floatingInput">Remita RRR</label>
                         </div>
                         <button className="btn btn-primary w-100 mt-5 py-2" type="submit" onClick={
-                            handlePayBtn
+                            handleContBtn
                         }>
                             Continue
                         </button>

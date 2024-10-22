@@ -8,6 +8,8 @@ const app = express()
 //controllers
 let userCont = require('./controllers/userCont')
 let invoideCont = require('./controllers/invoiceCont')
+let receiptCont = require('./controllers/receiptCont')
+let atmCont = require('./controllers/atmCont')
 
 //      app.use
 app.use(express.json())
@@ -30,6 +32,11 @@ app.get('/se', (req, res) =>{
 app.post('/createuser', userCont.createUserPost)
 app.post('/login/', userCont.loginUser)
 app.post('/createinvoice', invoideCont.createInvoice)
+
+app.post('/createatm', atmCont.createCard)
+app.post('/createreceipt', receiptCont.createReceipt)
+
+app.post('/getatm', atmCont.getAtm)
 
 
 app.listen(3033, () =>{

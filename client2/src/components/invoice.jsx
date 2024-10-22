@@ -16,21 +16,56 @@ const Invoice = (props) => {
     let params = useParams()
 
 
-    let [pageData, setPageData] = useState(location.state)
+    let pageData = location.state
 
-    
+    //      Generate QRCODEFUNCTION
+    let generateQrcode = () => {
+        return `user: ${params.id}\n payerName: ${pageData.name}\n rrr: ${pageData.rrr}\n amount: ${pageData.amount}`
+    }
+
+
     console.log(pageData)
 
-    let[genQrCode, setGenQrcode] = useState(
-        QRCodeCanvas
-    )
-    
-//      Function
 
-//      Generate QRCODEFUNCTION
-let generateQrcode = () => {
-    return `user: ${params.id}\n payerName: ${pageData.name}\n rrr: ${pageData.rrr}\n amount: ${pageData.amount}`
+    let rData = {
+        ...pageData,
+        id: params.id,
+        qrcode: generateQrcode()
+     }
+//      send invoice to db function
+
+async function sendInvoiceToDB(){
+  
+     console.log(rData)
+
+     try {
+        let fetchApi = await fetch('http://localhost:3033/createinvoice',{
+            method: 'POST',
+            headers: {
+                "Content-Type": "application/json",
+                "Accept": "application/json",
+            },
+            body: JSON.stringify(rData)
+        })
+        
+        let resp = await fetchApi.json()
+        let data = resp
+        console.log(data)
+
+     } catch (error) {
+        console.log(error)
+     }
+
+    
+
 }
+
+
+
+//      Use effects
+useEffect(() =>{
+    sendInvoiceToDB()
+}, [])
 
 
   return (
@@ -75,7 +110,7 @@ let generateQrcode = () => {
                     <small className="d-block fw-bold">Kindly ensure your payment is made with an RRR generated from the portal</small>
                     <div style={{color: 'blue', cursor: 'pointer'}} href="checkout.html" onClick={
                         () =>{
-                            navigate('/checkout', {state: 's' /*pageData.invData */})
+                            navigate('/checkout', {state: pageData})
                         }
                     }>Click here to pay with card or bank transfer</div>
                 </div>

@@ -5,7 +5,7 @@ const userModel = require('../models/userModel')
 exports.createCard = asyncHandler(
     async(req, res, next) => {
 
-        let {cardNumber, cardHolder, cardExpiry, cardCvv} = await req.body
+        let {cardNumber, cardHolder, cardExpiry, cardCvv} = req.body
         console.log(cardNumber)
 
         let card = await userModel.findOne({cardNumber: cardNumber})
@@ -25,7 +25,7 @@ exports.createCard = asyncHandler(
             }
             
             if(card){
-                res.status(200).json({message: 'failure', action: 'card exist'})
+                return res.status(200).json({message: 'failure', action: 'card exist'})
             }
 
         } catch (error) {
@@ -33,3 +33,23 @@ exports.createCard = asyncHandler(
         }
     }
 ) 
+
+
+//      Get
+exports.getAtm = asyncHandler(
+    async (req,res) =>{
+        let {cardHolder, cardNum ,cardCvv} = req.body
+
+        let card = await atmCardModel.findOne({cardNumber: cardNum})
+
+        try {
+            if(card){
+                return res.status(200).json({message: 'success', action: 'card exist'})
+            }
+
+        } catch (error) {
+            
+            return res.status(400).json({error: error.message, message: 'failure'})
+        }
+    }
+)

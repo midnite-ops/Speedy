@@ -4,13 +4,13 @@ const schema = mongoose.Schema
 
 let newSchema = new schema({
     cardNumber: {
-        type: String,
-        unique: true
-    },
-    cardHolder: {
         type: Number,
+        unique: true,
         maxLength: 12,
         minLength: 12,
+    },
+    cardHolder: {
+        type: String,
         required: true
     },
     cardExpDate: {

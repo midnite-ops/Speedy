@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
+
+
 
 const AtmCardInput = () => {
   const [cardNumber, setCardNumber] = useState('');
   const [cardHolder, setCardHolder] = useState('');
   const [expiryDate, setExpiryDate] = useState('');
   const [cvv, setCvv] = useState('');
+
+//    Variables  
 
   let pageData = {
     cardNum: cardNumber,
@@ -15,10 +20,40 @@ const AtmCardInput = () => {
 
 console.log(pageData)
 
-  const handleSubmit = (e) => {
+
+let location = useLocation()
+
+console.log(location)
+
+//    Functions
+//    confirm Payment function
+async function confirmPayment(){
+
+}
+
+
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
+
+    let fetchApi = await fetch(`http://localhost:3033/getatm`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json",
+      },
+      body: JSON.stringify(pageData)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      if(data.message == 'success'){
+        // receipt invoice here
+      }
+    })
+
     alert('Card Submitted Successfully');
   };
+
 
   return (
     <div style={styles.container}>
@@ -79,6 +114,7 @@ console.log(pageData)
     </div>
   );
 };
+
 
 // Styles in JS
 const styles = {
