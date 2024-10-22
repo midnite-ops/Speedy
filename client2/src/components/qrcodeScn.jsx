@@ -19,7 +19,7 @@ const QRScanner = () => {
       .then(data => {
         console.log(data)
         if(data.message == success){
-            console.log('hsjxj')
+            console.log('hsjxjcl')
             navigate('/receipt', {state: data})
         }
       })
