@@ -19,7 +19,7 @@ app.use(cors({
 }))
 
 //      MongoDb server connection
-let mongoConnect = mongoose.connect('mongodb+srv://dansdana1999:07061071398@cluster0.rcbk7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
+let mongoConnect = mongoose.connect('mongodb+srv://dansdana1999:<password>@cluster0.rcbk7.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
                   .then(resp => console.log('db connected'))
                   .catch(error => console.log(error))
 
